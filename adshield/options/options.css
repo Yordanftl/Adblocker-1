@@ -1,0 +1,185 @@
+:root {
+  --bg: #0f172a;
+  --bg-card: #1e293b;
+  --border: #334155;
+  --text: #f1f5f9;
+  --text-dim: #94a3b8;
+  --accent: #6366f1;
+  --accent-hover: #818cf8;
+  --danger: #ef4444;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+}
+
+/* ---------- header ---------- */
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.logo { width: 44px; height: 44px; }
+.page-header h1 { font-size: 22px; font-weight: 700; }
+.page-header p { font-size: 13px; color: var(--text-dim); margin-top: 2px; }
+
+/* ---------- stat cards ---------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.card-num {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent-hover);
+  font-variant-numeric: tabular-nums;
+}
+.card-label { font-size: 12px; color: var(--text-dim); }
+
+/* ---------- panels ---------- */
+.panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+}
+.panel h2 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.panel-desc { font-size: 12px; color: var(--text-dim); margin-bottom: 12px; }
+.panel-desc code {
+  background: rgba(99, 102, 241, 0.15);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-top: 1px solid var(--border);
+  cursor: pointer;
+}
+.row:first-of-type { border-top: none; }
+.row strong { font-size: 14px; display: block; }
+.row-desc { font-size: 12px; color: var(--text-dim); }
+
+/* ---------- switch ---------- */
+.switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+  position: absolute;
+  inset: 0;
+  background: var(--border);
+  border-radius: 999px;
+  transition: background 0.2s;
+}
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 3px;
+  top: 3px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+.switch input:checked + .slider { background: var(--accent); }
+.switch input:checked + .slider::before { transform: translateX(20px); }
+
+/* ---------- lists ---------- */
+.list { list-style: none; }
+.list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+}
+.list li .remove {
+  background: none;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+.list li .remove:hover { background: rgba(239, 68, 68, 0.12); }
+.empty { font-size: 12px; color: var(--text-dim); font-style: italic; }
+
+/* ---------- add form ---------- */
+.add-form { display: flex; gap: 8px; margin-bottom: 6px; }
+.add-form input {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 13px;
+  padding: 9px 12px;
+  outline: none;
+}
+.add-form input:focus { border-color: var(--accent); }
+.form-error { color: var(--danger); font-size: 12px; min-height: 16px; }
+
+/* ---------- buttons ---------- */
+.btn {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.primary:hover { background: var(--accent-hover); }
+.danger-btn { color: var(--danger); border-color: rgba(239, 68, 68, 0.4); }
+.danger-btn:hover { background: rgba(239, 68, 68, 0.12); }
+
+.page-footer {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 8px;
+}
+
+@media (max-width: 480px) {
+  .page { padding: 20px 14px 36px; }
+  .page-header h1 { font-size: 19px; }
+}

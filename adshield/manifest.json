@@ -1,0 +1,64 @@
+{
+  "manifest_version": 3,
+  "name": "AdShield — Ad & Tracker Blocker",
+  "version": "1.0.0",
+  "description": "A fast, privacy-first ad and tracker blocker built on Manifest V3 declarativeNetRequest. No remote servers, no data collection.",
+  "minimum_chrome_version": "110",
+  "permissions": [
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess",
+    "declarativeNetRequestFeedback",
+    "storage",
+    "tabs",
+    "activeTab"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "AdShield",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "options_page": "options/options.html",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "css": ["content/cosmetic.css"],
+      "js": ["content/cosmetic.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_ads",
+        "enabled": true,
+        "path": "rulesets/ads.json"
+      },
+      {
+        "id": "ruleset_trackers",
+        "enabled": true,
+        "path": "rulesets/trackers.json"
+      },
+      {
+        "id": "ruleset_annoyances",
+        "enabled": true,
+        "path": "rulesets/annoyances.json"
+      }
+    ]
+  }
+}
